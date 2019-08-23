@@ -1,10 +1,20 @@
-import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, TextInput, View, Button, Alert } from "react-native";
 
 export default function App() {
+  const [text, setText] = useState("");
+
+  const buttonPressed = () => {
+    Alert.alert("You are crazy!!!!" + text);
+  };
   return (
     <View style={styles.container}>
-      <Text>Siu sau lau bau</Text>
+      <TextInput
+        style={{ width: 200, borderColor: "gray", borderWidth: 1 }}
+        onChangeText={text => setText(text)}
+        value={text}
+      />
+      <Button onPress={buttonPressed} title="Press me sensei" />
     </View>
   );
 }
