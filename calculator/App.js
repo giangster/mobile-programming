@@ -1,20 +1,33 @@
 import React, { useState } from "react";
-import { StyleSheet, TextInput, View, Button, Alert } from "react-native";
+import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
 export default function App() {
-  const [text, setText] = useState("");
+  const [no1, no2, result, setText] = useState("");
 
-  const buttonPressed = () => {
-    Alert.alert("You are crazy!!!!" + text);
+  const buttonPlus = () => {
+    result = no1 + no2;
+  };
+
+  const buttonMinus = () => {
+    result = no1 - no2;
   };
   return (
     <View style={styles.container}>
       <TextInput
-        style={{ width: 200, borderColor: "gray", borderWidth: 1 }}
-        onChangeText={text => setText(text)}
-        value={text}
+        style={{ width: 200, borderColor: "gray", borderWidth: 1, margin: 2 }}
+        onChangeText={no1 => setText(no1)}
+        value={no1}
+        keyboardType={"numeric"}
       />
-      <Button onPress={buttonPressed} title="Press me sensei" />
+      <TextInput
+        style={{ width: 200, borderColor: "gray", borderWidth: 1, margin: 2 }}
+        onChangeText={no2 => setText(no2)}
+        value={no2}
+        keyboardType={"numeric"}
+      />
+      <Button onPress={buttonPlus} title="+" />
+      <Button onPress={buttonMinus} title="-" />
+      <Text>{result}</Text>
     </View>
   );
 }
