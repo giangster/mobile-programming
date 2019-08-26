@@ -1,43 +1,67 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
-buttonPlus = () => {
-  result = parseInt(no1) + parseInt(no2);
-  resultShow = true;
-  return result;
-};
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      no1: 0,
+      no2: 0,
+      result: 0,
+      resultShow: false
+    };
+  }
 
-buttonMinus = () => {
-  result = parseInt(no1) - parseInt(no2);
-  resultShow = true;
-  return result;
-};
+  buttonPlus = () => {
+    let temp = this.state.no1 + this.state.no2;
 
-export default function App() {
-  const [no1, setNo1] = useState(0);
-  const [no2, setNo2] = useState(0);
-  let result = useState(0);
-  let resultShow = useState(false);
+    this.setState({
+      result: temp,
+      resultShow: true
+    });
+    console.log(this.state);
+  };
 
-  return (
-    <View style={styles.container}>
-      <TextInput
-        style={{ width: 200, borderColor: "gray", borderWidth: 1, margin: 2 }}
-        onChange={no1 => setNo1(no1)}
-        value={no1}
-        keyboardType="numeric"
-      />
-      <TextInput
-        style={{ width: 200, borderColor: "gray", borderWidth: 1, margin: 2 }}
-        onChange={no2 => setNo2(no2)}
-        value={no2}
-        keyboardType="numeric"
-      />
-      <Button onPress={buttonPlus} title="+" />
-      <Button onPress={buttonMinus} title="-" />
-      {resultShow && <Text>{result}</Text>}
-    </View>
-  );
+  buttonMinus = () => {
+    let temp = this.state.no1 - this.state.no2;
+
+    this.setState({
+      result: temp,
+      resultShow: true
+    });
+  };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <TextInput
+          style={{
+            width: 200,
+            borderColor: "gray",
+            borderWidth: 1,
+            margin: 2
+          }}
+          onChangeText={text => this.setState({ no1: parseInt(text) })}
+          value={this.state.no1}
+          keyboardType="number-pad"
+        />
+        <TextInput
+          style={{
+            width: 200,
+            borderColor: "gray",
+            borderWidth: 1,
+            margin: 2
+          }}
+          onChangeText={text => this.setState({ no2: parseInt(text) })}
+          value={this.state.no2}
+          keyboardType="number-pad"
+        />
+        <Button onPress={this.buttonPlus} title="+" />
+        <Button onPress={this.buttonMinus} title="-" />
+        {this.state.resultShow && <Text>{this.state.result}</Text>}
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
