@@ -38,8 +38,12 @@ const App = () => {
         value={no2}
         keyboardType="number-pad"
       />
-      <Button onPress={buttonPlus} title="+" />
-      <Button onPress={buttonMinus} title="-" />
+
+      <View style={styles.buttonContainer}>
+        <Button onPress={buttonPlus} title="+" />
+        <Button color="#FE434C" onPress={buttonMinus} title="-" />
+      </View>
+
       <Text>{result}</Text>
     </View>
   );
@@ -51,7 +55,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center"
-  }
+  },
+  buttonContainer: { flexDirection: "row" }
 });
 
 export default App;
