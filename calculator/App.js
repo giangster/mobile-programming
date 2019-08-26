@@ -1,68 +1,49 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      no1: 0,
-      no2: 0,
-      result: 0,
-      resultShow: false
-    };
-  }
+const App = () => {
+  const [no1, setText1] = useState(0);
+  const [no2, setText2] = useState(0);
+  const [result, setResult] = useState(0);
 
-  buttonPlus = () => {
-    let temp = this.state.no1 + this.state.no2;
-
-    this.setState({
-      result: temp,
-      resultShow: true
-    });
-    console.log(this.state);
+  const buttonPlus = () => {
+    setResult(no1 + no2);
   };
 
-  buttonMinus = () => {
-    let temp = this.state.no1 - this.state.no2;
-
-    this.setState({
-      result: temp,
-      resultShow: true
-    });
+  const buttonMinus = () => {
+    setResult(no1 - no2);
   };
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <TextInput
-          style={{
-            width: 200,
-            borderColor: "gray",
-            borderWidth: 1,
-            margin: 2
-          }}
-          onChangeText={text => this.setState({ no1: parseInt(text) })}
-          value={this.state.no1}
-          keyboardType="number-pad"
-        />
-        <TextInput
-          style={{
-            width: 200,
-            borderColor: "gray",
-            borderWidth: 1,
-            margin: 2
-          }}
-          onChangeText={text => this.setState({ no2: parseInt(text) })}
-          value={this.state.no2}
-          keyboardType="number-pad"
-        />
-        <Button onPress={this.buttonPlus} title="+" />
-        <Button onPress={this.buttonMinus} title="-" />
-        {this.state.resultShow && <Text>{this.state.result}</Text>}
-      </View>
-    );
-  }
-}
+  return (
+    <View style={styles.container}>
+      <TextInput
+        style={{
+          width: 200,
+          borderColor: "gray",
+          borderWidth: 1,
+          margin: 2
+        }}
+        onChangeText={text => setText1(parseInt(text))}
+        value={no1}
+        keyboardType="number-pad"
+      />
+      <TextInput
+        style={{
+          width: 200,
+          borderColor: "gray",
+          borderWidth: 1,
+          margin: 2
+        }}
+        onChangeText={text => setText2(parseInt(text))}
+        value={no2}
+        keyboardType="number-pad"
+      />
+      <Button onPress={buttonPlus} title="+" />
+      <Button onPress={buttonMinus} title="-" />
+      <Text>{result}</Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -72,3 +53,5 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   }
 });
+
+export default App;
