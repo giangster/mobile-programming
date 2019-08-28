@@ -14,6 +14,7 @@ const App = () => {
 
   const addItem = () => {
     setList([...shoppingList, { shoppingItem: shoppingItem }]);
+    setItem("");
   };
 
   const deleteList = () => {
@@ -34,15 +35,16 @@ const App = () => {
       />
 
       <View style={styles.buttonContainer}>
-        <Button onPress={addItem} title="Add" />
-        <Button color="#FE434C" onPress={deleteList} title="Clear" />
+        <Button onPress={addItem} title="ADD" />
+        <Button color="#FE434C" onPress={deleteList} title="CLEAR" />
       </View>
-      <Text>Shopping List</Text>
+      <Text style={styles.title}>Shopping List</Text>
       <FlatList
         data={shoppingList}
         renderItem={({ item, key }) => (
           <Text index={key}>{item.shoppingItem} </Text>
         )}
+        keyExtractor={(item, index) => index.toString()}
       />
     </View>
   );
@@ -56,7 +58,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-  buttonContainer: { flexDirection: "row" }
+  buttonContainer: { flexDirection: "row" },
+  title: { fontWeight: "bold", fontSize: 20, margin: 15 }
 });
 
 export default App;
