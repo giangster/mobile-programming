@@ -4,26 +4,26 @@ import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 class CalculatorScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = { no1: 0, no2: 0, result: "", history: [] };
+    this.state = { no1: "", no2: "", result: "", history: [] };
   }
 
   buttonPlus = () => {
+    let no1 = parseInt(this.state.no1);
+    let no2 = parseInt(this.state.no2);
+
     this.setState({
-      result: `${this.state.no1} + ${this.state.no2} = ${this.state.no1 +
-        this.state.no2}`,
-      history: [...history, this.state.result],
-      no1: 0,
-      no2: 0
+      result: `${no1} + ${no2} = ${no1 + no2}`,
+      history: [...this.state.history, this.state.result]
     });
   };
 
   buttonMinus = () => {
+    let no1 = parseInt(this.state.no1);
+    let no2 = parseInt(this.state.no2);
+
     this.setState({
-      result: `${this.state.no1} - ${this.state.no2} = ${this.state.no1 -
-        this.state.no2}`,
-      history: [...history, this.state.result],
-      no1: 0,
-      no2: 0
+      result: `${no1} - ${no2} = ${no1 - no2}`,
+      history: [...this.state.history, this.state.result]
     });
   };
 
@@ -36,20 +36,23 @@ class CalculatorScreen extends Component {
 
         <TextInput
           style={styles.input}
-          onChangeText={no1 => this.setState({ no1: parseInt(no1) })}
+          onChangeText={no1 => this.setState({ no1 })}
           value={this.state.no1}
           keyboardType="number-pad"
+          clearButtonMode="always"
         />
         <TextInput
           style={styles.input}
-          onChangeText={no2 => this.setState({ no2: parseInt(no2) })}
+          onChangeText={no2 => this.setState({ no2 })}
           value={this.state.no2}
           keyboardType="number-pad"
+          clearButtonMode="always"
         />
         <View style={styles.buttonContainer}>
           <Button onPress={this.buttonPlus} title="+" />
           <Button color="#FE434C" onPress={this.buttonMinus} title="-" />
         </View>
+        <Text>{this.state.result}</Text>
       </View>
     );
   }
@@ -57,7 +60,6 @@ class CalculatorScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
     flex: 1,
     backgroundColor: "coral",
     alignItems: "center",
