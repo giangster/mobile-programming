@@ -1,9 +1,9 @@
 {
-  "devToolsPort": 19003,
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": "https://ub-dia.anonymous.calculator-multipage.exp.direct",
-  "packagerNgrokUrl": "https://packager.ub-dia.anonymous.calculator-multipage.exp.direct",
-  "ngrokPid": 6445
+  "devToolsPort": 19002,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 12754,
+  "expoServerNgrokUrl": "https://qg-vmr.anonymous.calculator-multipage.exp.direct",
+  "packagerNgrokUrl": "https://packager.qg-vmr.anonymous.calculator-multipage.exp.direct",
+  "ngrokPid": 12762
 }
