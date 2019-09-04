@@ -10,19 +10,8 @@ const AppNavigator = createBottomTabNavigator({
   History: { screen: HistoryScreen }
 });
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text style={{ fontWeight: "800" }}>Calculator</Text>
-    </View>
-  );
-}
+const AppContainer = createAppContainer(AppNavigator);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
+export default function App() {
+  return <AppContainer />;
+}
