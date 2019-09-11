@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import {
+  Keyboard,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  TouchableWithoutFeedback
+} from "react-native";
 
 class CalculatorScreen extends Component {
   constructor(props) {
@@ -29,54 +37,62 @@ class CalculatorScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={{ fontSize: 18, fontWeight: "600", margin: 20 }}>
-          Calculator
-        </Text>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={styles.container}>
+          <Text style={{ fontSize: 18, fontWeight: "600", margin: 20 }}>
+            Calculator
+          </Text>
 
-        <TextInput
-          style={styles.input}
-          onChangeText={no1 => this.setState({ no1 })}
-          value={this.state.no1}
-          keyboardType="number-pad"
-          clearButtonMode="always"
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={no2 => this.setState({ no2 })}
-          value={this.state.no2}
-          keyboardType="number-pad"
-          clearButtonMode="always"
-        />
-        <View style={styles.buttonContainer}>
-          <Button onPress={this.buttonPlus} title="+" />
-          <Button color="#FE434C" onPress={this.buttonMinus} title="-" />
+          <TextInput
+            style={styles.input}
+            onChangeText={no1 => this.setState({ no1 })}
+            value={this.state.no1}
+            keyboardType="numeric"
+            clearButtonMode="always"
+            onSubmitEditing={Keyboard.dismiss}
+          />
+          <TextInput
+            style={styles.input}
+            onChangeText={no2 => this.setState({ no2 })}
+            value={this.state.no2}
+            keyboardType="numeric"
+            clearButtonMode="always"
+            onSubmitEditing={Keyboard.dismiss}
+          />
+          <View style={styles.buttonContainer}>
+            <Button onPress={this.buttonPlus} title="+" />
+            <Button color="#FE434C" onPress={this.buttonMinus} title="-" />
+          </View>
+          <Text style={{ fontSize: 18, fontWeight: "600", margin: 20 }}>
+            Result
+          </Text>
+          <View style={{ flex: 2 }}>
+            <Text>{this.state.result}</Text>
+          </View>
         </View>
-        <Text>{this.state.result}</Text>
-      </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 50,
     flex: 1,
     backgroundColor: "coral",
     alignItems: "center",
     justifyContent: "center"
   },
   input: {
-    marginBottom: 20,
-    height: 50,
-    fontSize: 48,
+    marginBottom: 15,
+    height: 40,
+    fontSize: 38,
     width: 200,
     borderColor: "black",
     borderWidth: 1,
     margin: 1
   },
-  buttonContainer: {
-    flexDirection: "row"
-  }
+  buttonContainer: { flexDirection: "row" }
 });
 
 export default CalculatorScreen;
