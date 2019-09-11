@@ -10,6 +10,10 @@ import {
 } from "react-native";
 
 class CalculatorScreen extends Component {
+  static navigationOptions = {
+    title: "Calculate"
+  };
+
   constructor(props) {
     super(props);
     this.state = { no1: "", no2: "", result: "", history: [] };
@@ -36,6 +40,7 @@ class CalculatorScreen extends Component {
   };
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={styles.container}>
@@ -62,6 +67,14 @@ class CalculatorScreen extends Component {
           <View style={styles.buttonContainer}>
             <Button onPress={this.buttonPlus} title="+" />
             <Button color="#FE434C" onPress={this.buttonMinus} title="-" />
+          </View>
+          <View>
+            <Button
+              onPress={() =>
+                navigate("History", { history: this.state.history })
+              }
+              title="History"
+            />
           </View>
           <Text style={{ fontSize: 18, fontWeight: "600", margin: 20 }}>
             Result
