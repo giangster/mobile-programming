@@ -7,7 +7,9 @@ class HistoryScreen extends Component {
     const { params } = this.props.navigation.state;
     return (
       <View style={styles.container}>
-        <Text>History</Text>
+        <Text style={{ fontSize: 18, fontWeight: "600", margin: 20 }}>
+          History
+        </Text>
         <FlatList
           data={params.history}
           keyExtractor={({ item, index }) => index}
@@ -22,7 +24,6 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 50,
     flex: 1,
-    backgroundColor: "pink",
     alignItems: "center",
     justifyContent: "center"
   }
