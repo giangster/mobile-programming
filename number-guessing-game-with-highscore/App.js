@@ -21,14 +21,11 @@ const App = () => {
   return (
     <View style={styles.container}>
       <Text>{result}</Text>
-      <Text>Guess number between 1-100</Text>
+      <Text style={{ fontSize: 20, marginBottom: 15 }}>
+        Guess number between 1-100
+      </Text>
       <TextInput
-        style={{
-          width: 200,
-          borderColor: "gray",
-          borderWidth: 1,
-          margin: 2
-        }}
+        style={styles.textInput}
         onChangeText={text => setNumber(parseInt(text))}
         value={number}
         keyboardType="number-pad"
@@ -44,6 +41,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center"
+  },
+  textInput: {
+    width: 200,
+    height: 50,
+    borderColor: "gray",
+    borderWidth: 1,
+    margin: 5,
+    marginBottom: 15
   }
 });
 
