@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Alert, Button } from "react-native";
+import { AsyncStorage, Alert } from "react-native";
 
 const App = () => {
   const [number, setNumber] = useState("");
