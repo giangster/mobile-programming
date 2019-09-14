@@ -11,11 +11,22 @@ const App = () => {
     if (number < Math.floor(Math.random() * 100) + 1) {
       setResult(`Your guess ${number} is too low`);
       setCount(count + 1);
+      saveCount();
     } else if (number > Math.floor(Math.random() * 100) + 1) {
       setResult(`Your guess ${number} is too high`);
       setCount(count + 1);
+      saveCount();
     } else {
       Alert.alert(`You guessed the number in ${count} guesses`);
+    }
+  };
+
+  const saveCount = async count => {
+    try {
+      await AsyncStorage.setItem("count", JSON.stringify(count));
+    } catch (error) {
+      // Error retrieving data
+      console.log(error.message);
     }
   };
 
