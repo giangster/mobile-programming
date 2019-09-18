@@ -30,23 +30,25 @@ const App = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.container}>
-        <View>
-          {recipes ? (
-            <FlatList
-              style={{ marginLeft: "5%" }}
-              keyExtractor={item => item.id}
-              renderItem={({ item, index }) => (
-                <Text key={index}>
-                  <Image
-                    style={{ width: 50, height: 50, margin: 10 }}
-                    source={{ uri: `${item.thumbnail}` }}
-                  />
-                  {item.title}
-                </Text>
-              )}
-              data={recipes}
-            />
-          ) : null}
+        <View style={{ marginTop: 70 }}>
+          <FlatList
+            style={{ marginLeft: "5%" }}
+            keyExtractor={item => item.id}
+            renderItem={({ item, index }) => (
+              <Text key={index}>
+                <Image
+                  style={{
+                    width: 50,
+                    height: 50,
+                    margin: 10
+                  }}
+                  source={{ uri: `${item.thumbnail}` }}
+                />
+                {item.title}
+              </Text>
+            )}
+            data={recipes}
+          />
         </View>
         <View>
           <TextInput
@@ -64,7 +66,7 @@ const App = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingBottom: 50,
+    paddingBottom: 80,
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
