@@ -1,6 +1,13 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TextInput, View, Alert, Button } from "react-native";
-import { AsyncStorage, Alert } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  Alert,
+  Button,
+  AsyncStorage
+} from "react-native";
 
 const App = () => {
   const [number, setNumber] = useState("");
@@ -8,16 +15,17 @@ const App = () => {
   const [count, setCount] = useState(1);
 
   const checkNumber = () => {
-    if (number < Math.floor(Math.random() * 100) + 1) {
+    if (number < Math.floor(Math.random() * 10) + 1) {
       setResult(`Your guess ${number} is too low`);
       setCount(count + 1);
       saveCount();
-    } else if (number > Math.floor(Math.random() * 100) + 1) {
+    } else if (number > Math.floor(Math.random() * 10) + 1) {
       setResult(`Your guess ${number} is too high`);
       setCount(count + 1);
-      saveCount();
+      saveCount(count);
     } else {
       Alert.alert(`You guessed the number in ${count} guesses`);
+      readCount();
     }
   };
 
@@ -27,6 +35,15 @@ const App = () => {
     } catch (error) {
       // Error retrieving data
       console.log(error.message);
+    }
+  };
+
+  const readCount = async () => {
+    try {
+      let value = awaitAsyncStorage.getItem("count");
+      return `Highscore: ${value} guesses`;
+    } catch (error) {
+      console.log(error);
     }
   };
 
